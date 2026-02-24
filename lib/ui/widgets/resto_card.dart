@@ -14,20 +14,13 @@ class RestaurantCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (_) => DetailPage(id: restaurant.id),
-          ),
+          MaterialPageRoute(builder: (_) => DetailPage(id: restaurant.id)),
         );
       },
       child: Card(
         elevation: 3,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
-        margin: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 10,
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         child: Padding(
           padding: const EdgeInsets.all(12),
           child: Row(
@@ -50,7 +43,6 @@ class RestaurantCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -59,12 +51,8 @@ class RestaurantCard extends StatelessWidget {
                             restaurant.name,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium
-                                ?.copyWith(
-                                  fontWeight: FontWeight.w600,
-                                ),
+                            style: Theme.of(context).textTheme.titleMedium
+                                ?.copyWith(fontWeight: FontWeight.w600),
                           ),
                         ),
                         const SizedBox(width: 8),
@@ -95,12 +83,10 @@ class RestaurantCard extends StatelessWidget {
                           size: 16,
                           color: Colors.redAccent,
                         ),
-                        const SizedBox(width: 4),                        
+                        const SizedBox(width: 4),
                         Text(
                           'Kota ${restaurant.city}',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodySmall,
+                          style: Theme.of(context).textTheme.bodySmall,
                         ),
                       ],
                     ),
@@ -110,12 +96,9 @@ class RestaurantCard extends StatelessWidget {
                       restaurant.description,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall
-                          ?.copyWith(
-                            color: Colors.grey[700],
-                          ),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodySmall?.copyWith(color: Colors.grey[700]),
                     ),
                   ],
                 ),

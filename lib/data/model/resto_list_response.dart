@@ -6,9 +6,7 @@ class RestaurantListResponse {
   factory RestaurantListResponse.fromJson(Map<String, dynamic> json) {
     return RestaurantListResponse(
       restaurants: List<Restaurant>.from(
-        json['restaurants'].map(
-          (x) => Restaurant.fromJson(x),
-        ),
+        json['restaurants'].map((x) => Restaurant.fromJson(x)),
       ),
     );
   }

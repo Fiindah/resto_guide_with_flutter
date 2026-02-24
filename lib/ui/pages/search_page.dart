@@ -21,9 +21,7 @@ class SearchPage extends StatelessWidget {
             ),
             textInputAction: TextInputAction.search,
             onSubmitted: (value) {
-              context
-                  .read<SearchProvider>()
-                  .searchRestaurant(value);
+              context.read<SearchProvider>().searchRestaurant(value);
             },
           ),
         ),
@@ -33,15 +31,11 @@ class SearchPage extends StatelessWidget {
           final state = provider.state;
 
           if (state == null) {
-            return const Center(
-              child: Text('Ketik nama restoran'),
-            );
+            return const Center(child: Text('Ketik nama restoran'));
           }
 
           if (state is LoadingState) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const Center(child: CircularProgressIndicator());
           }
 
           if (state is ErrorState) {
@@ -57,14 +51,10 @@ class SearchPage extends StatelessWidget {
             final successState = state as SuccessState;
 
             return ListView.builder(
-              itemCount:
-                  successState.data.restaurants.length,
+              itemCount: successState.data.restaurants.length,
               itemBuilder: (context, index) {
-                final restaurant =
-                    successState.data.restaurants[index];
-                return RestaurantCard(
-                  restaurant: restaurant,
-                );
+                final restaurant = successState.data.restaurants[index];
+                return RestaurantCard(restaurant: restaurant);
               },
             );
           }

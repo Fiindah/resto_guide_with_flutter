@@ -4,10 +4,7 @@ import 'package:resto_app/data/model/resto_detail_response.dart';
 class CustomerReviewList extends StatelessWidget {
   final List<CustomerReview> reviews;
 
-  const CustomerReviewList({
-    super.key,
-    required this.reviews,
-  });
+  const CustomerReviewList({super.key, required this.reviews});
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +21,11 @@ class CustomerReviewList extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Icon(Icons.rate_review_outlined,
-                color: colorScheme.onSurfaceVariant, size: 40),
+            Icon(
+              Icons.rate_review_outlined,
+              color: colorScheme.onSurfaceVariant,
+              size: 40,
+            ),
             const SizedBox(height: 8),
             Text(
               'Belum ada review',
@@ -41,8 +41,9 @@ class CustomerReviewList extends StatelessWidget {
 
     return Column(
       children: reviews.map((review) {
-        final initial =
-            review.name.isNotEmpty ? review.name[0].toUpperCase() : "?";
+        final initial = review.name.isNotEmpty
+            ? review.name[0].toUpperCase()
+            : "?";
 
         return Container(
           margin: const EdgeInsets.only(bottom: 16),
@@ -71,9 +72,7 @@ class CustomerReviewList extends StatelessWidget {
                       bottomLeft: Radius.circular(16),
                       bottomRight: Radius.circular(16),
                     ),
-                    border: Border.all(
-                      color: colorScheme.outlineVariant,
-                    ),
+                    border: Border.all(color: colorScheme.outlineVariant),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,7 +83,8 @@ class CustomerReviewList extends StatelessWidget {
                           Text(
                             review.name,
                             style: textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.bold),
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           Text(
                             review.date,
@@ -95,10 +95,7 @@ class CustomerReviewList extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 8),
-                      Text(
-                        review.review,
-                        style: textTheme.bodyMedium,
-                      ),
+                      Text(review.review, style: textTheme.bodyMedium),
                     ],
                   ),
                 ),

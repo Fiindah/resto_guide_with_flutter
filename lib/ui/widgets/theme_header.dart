@@ -20,20 +20,17 @@ class ThemeHeaderSwitch extends StatelessWidget {
         IconButton(
           tooltip: 'Default Theme',
           icon: Icon(Icons.palette, color: color(AppThemeMode.softBlue)),
-          onPressed: () =>
-              themeProvider.setTheme(AppThemeMode.softBlue),
+          onPressed: () => themeProvider.setTheme(AppThemeMode.softBlue),
         ),
         IconButton(
           tooltip: 'Light Theme',
           icon: Icon(Icons.light_mode, color: color(AppThemeMode.light)),
-          onPressed: () =>
-              themeProvider.setTheme(AppThemeMode.light),
+          onPressed: () => themeProvider.setTheme(AppThemeMode.light),
         ),
         IconButton(
           tooltip: 'Dark Theme',
           icon: Icon(Icons.dark_mode, color: color(AppThemeMode.dark)),
-          onPressed: () =>
-              themeProvider.setTheme(AppThemeMode.dark),
+          onPressed: () => themeProvider.setTheme(AppThemeMode.dark),
         ),
       ],
     );

@@ -39,11 +39,7 @@ class RestaurantDetailProvider extends ChangeNotifier {
       reviewState = LoadingState();
       notifyListeners();
 
-      await apiService.postReview(
-        id: restaurantId,
-        name: name,
-        review: review,
-      );
+      await apiService.postReview(id: restaurantId, name: name, review: review);
       await fetchRestaurantDetail();
 
       reviewState = SuccessState(null);

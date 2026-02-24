@@ -3,7 +3,6 @@ import 'package:resto_app/data/model/resto_list_response.dart';
 import '../utils/result_state.dart';
 import 'package:resto_app/data/api/resto_api_service.dart';
 
-
 class SearchProvider extends ChangeNotifier {
   final RestaurantApiService apiService;
 

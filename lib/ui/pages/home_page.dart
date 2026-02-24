@@ -6,8 +6,24 @@ import 'package:resto_app/ui/widgets/resto_card.dart';
 import 'package:resto_app/ui/widgets/theme_header.dart';
 import '../../utils/result_state.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(
+      () => Provider.of<RestaurantListProvider>(
+        context,
+        listen: false,
+      ).fetchRestaurantList(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +33,7 @@ class HomePage extends StatelessWidget {
           final state = provider.state;
 
           return CustomScrollView(
+            key: const Key('home_scroll'),
             slivers: [
               SliverAppBar(
                 expandedHeight: 200,
@@ -25,10 +42,6 @@ class HomePage extends StatelessWidget {
                 actions: const [ThemeHeaderSwitch()],
                 flexibleSpace: FlexibleSpaceBar(
                   title: const Text('Resto Guide'),
-                  background: Image.network(
-                    'https://images.unsplash.com/photo-1555396273-367ea4eb4db5',
-                    fit: BoxFit.cover,
-                  ),
                 ),
               ),
               SliverToBoxAdapter(
