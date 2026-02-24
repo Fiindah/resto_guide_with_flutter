@@ -4,8 +4,7 @@ import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
 class NotificationService {
-  static final NotificationService _instance =
-      NotificationService._internal();
+  static final NotificationService _instance = NotificationService._internal();
 
   factory NotificationService() => _instance;
 
@@ -23,8 +22,9 @@ class NotificationService {
     const AndroidInitializationSettings androidInit =
         AndroidInitializationSettings('@mipmap/ic_launcher');
 
-    const InitializationSettings settings =
-        InitializationSettings(android: androidInit);
+    const InitializationSettings settings = InitializationSettings(
+      android: androidInit,
+    );
 
     await flutterLocalNotificationsPlugin.initialize(settings);
   }
@@ -32,15 +32,16 @@ class NotificationService {
   Future<void> scheduleDailyLunchReminder() async {
     const AndroidNotificationDetails androidDetails =
         AndroidNotificationDetails(
-      'daily_reminder_channel',
-      'Daily Reminder',
-      channelDescription: 'Reminder makan siang jam 11',
-      importance: Importance.high,
-      priority: Priority.high,
-    );
+          'daily_reminder_channel',
+          'Daily Reminder',
+          channelDescription: 'Reminder makan siang jam 11',
+          importance: Importance.high,
+          priority: Priority.high,
+        );
 
-    const NotificationDetails notificationDetails =
-        NotificationDetails(android: androidDetails);
+    const NotificationDetails notificationDetails = NotificationDetails(
+      android: androidDetails,
+    );
 
     await flutterLocalNotificationsPlugin.zonedSchedule(
       0,
@@ -48,7 +49,8 @@ class NotificationService {
       'Cek rekomendasi restoran terbaik hari ini!',
       _nextInstanceOf11AM(),
       notificationDetails,
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
       matchDateTimeComponents: DateTimeComponents.time,
     );
   }
@@ -60,8 +62,13 @@ class NotificationService {
   tz.TZDateTime _nextInstanceOf11AM() {
     final now = tz.TZDateTime.now(tz.local);
 
-    tz.TZDateTime scheduled =
-        tz.TZDateTime(tz.local, now.year, now.month, now.day, 11);
+    tz.TZDateTime scheduled = tz.TZDateTime(
+      tz.local,
+      now.year,
+      now.month,
+      now.day,
+      11,
+    );
 
     if (scheduled.isBefore(now)) {
       scheduled = scheduled.add(const Duration(days: 1));

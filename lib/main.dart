@@ -4,35 +4,21 @@ import 'package:resto_app/data/api/resto_api_service.dart';
 import 'package:resto_app/provider/favorite_provider.dart';
 import 'package:resto_app/provider/resto_list_provider.dart';
 import 'package:resto_app/provider/search_provider.dart';
+import 'package:resto_app/provider/navigation_provider.dart';
+import 'package:resto_app/provider/expandable_provider.dart';
 import 'package:resto_app/provider/theme_provider.dart';
 import 'package:resto_app/provider/reminder_provider.dart';
-import 'package:resto_app/services/notification_helper.dart';
 import 'package:resto_app/services/notification_service.dart';
 import 'package:resto_app/theme/app_theme.dart';
-import 'package:resto_app/ui/pages/main-page.dart';
+import 'package:resto_app/ui/pages/main_page.dart';
 import 'package:resto_app/ui/pages/search_page.dart';
-import 'package:workmanager/workmanager.dart';
 
-void callbackDispatcher() {
-  Workmanager().executeTask((task, inputData) async {
-    // init plugin di background isolate
-    await NotificationHelper.init();
-
-    if (task == "dailyReminderTask") {
-      await NotificationHelper.showRandomRestaurantNotification();
-    }
-
-    return Future.value(true);
-  });
-}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final notificationService = NotificationService();
   await notificationService.init();
-
-  await Workmanager().initialize(callbackDispatcher, isInDebugMode: true);
 
   runApp(
     MultiProvider(
@@ -49,6 +35,8 @@ void main() async {
         ),
 
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => NavigationProvider()),
+        ChangeNotifierProvider(create: (_) => ExpandableTextProvider()),
         ChangeNotifierProvider(create: (_) => FavoriteProvider()),
         ChangeNotifierProvider(
           create: (_) => ReminderProvider()..loadReminder(),
