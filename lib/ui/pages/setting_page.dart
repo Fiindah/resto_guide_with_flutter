@@ -7,8 +7,9 @@ class SettingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final reminderProvider = Provider.of<ReminderProvider>(context);
-    
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
@@ -24,22 +25,18 @@ class SettingPage extends StatelessWidget {
               children: [
                 Text(
                   "Notifications",
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.indigo,
-                      ),
+                  style: theme.textTheme.titleMedium,
                 ),
                 const SizedBox(height: 12),
                 Consumer<ReminderProvider>(
                   builder: (context, reminderProvider, _) {
                     return Material(
                       elevation: 2,
-                      shadowColor: Colors.black12,
                       borderRadius: BorderRadius.circular(16),
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16),
-                          color: Colors.white,
+                          color: theme.cardColor,
                         ),
                         child: ListTile(
                           contentPadding: const EdgeInsets.symmetric(
@@ -47,22 +44,23 @@ class SettingPage extends StatelessWidget {
                             vertical: 8,
                           ),
                           leading: CircleAvatar(
-                            backgroundColor: Colors.indigo.shade50,
-                            child: const Icon(
+                            backgroundColor:
+                                colorScheme.primary.withOpacity(0.1),
+                            child: Icon(
                               Icons.notifications_active,
-                              color: Colors.indigo,
+                              color: colorScheme.primary,
                             ),
                           ),
-                          title: const Text(
+                          title: Text(
                             "Daily Lunch Reminder",
-                            style: TextStyle(fontWeight: FontWeight.w600),
+                            style: theme.textTheme.titleMedium,
                           ),
-                          subtitle: const Text(
+                          subtitle: Text(
                             "Rekomendasi restoran setiap jam 11:00",
-                            style: TextStyle(fontSize: 13),
+                            style: theme.textTheme.bodyMedium,
                           ),
-                          trailing: Switch.adaptive( // Mengikuti gaya iOS/Android
-                            activeColor: Colors.indigo,
+                          trailing: Switch.adaptive(
+                            activeColor: colorScheme.primary,
                             value: reminderProvider.isReminderOn,
                             onChanged: (value) {
                               reminderProvider.toggleReminder(value);
