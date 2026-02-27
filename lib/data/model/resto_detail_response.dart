@@ -1,3 +1,5 @@
+import 'package:resto_app/data/model/resto_list_response.dart';
+
 class RestaurantDetailResponse {
   final RestaurantDetail restaurant;
 
@@ -48,6 +50,17 @@ class RestaurantDetail {
       ),
     );
   }
+
+  Restaurant toRestaurant() {
+  return Restaurant(
+    id: id,
+    name: name,
+    description: description,
+    pictureId: pictureId,
+    city: city,
+    rating: rating,
+  );
+}
 }
 
 class Menus {

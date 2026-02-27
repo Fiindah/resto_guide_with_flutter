@@ -26,6 +26,7 @@ class MainPage extends StatelessWidget {
             children: pages,
           ),
           bottomNavigationBar: NavigationBar(
+            key: const ValueKey("bottom_nav"),
             selectedIndex: navProvider.selectedIndex,
             onDestinationSelected: (index) {
               navProvider.changeIndex(index);
@@ -38,6 +39,7 @@ class MainPage extends StatelessWidget {
                 label: 'Home',
               ),
               NavigationDestination(
+                key: const ValueKey("bottom_nav_favorite"),
                 icon: Icon(Icons.favorite_border),
                 selectedIcon: Icon(Icons.favorite),
                 label: 'Favorite',

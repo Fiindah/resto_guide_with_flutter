@@ -1,54 +1,31 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:resto_app/main.dart' as app;
 
+import 'robot/resto_robot.dart';
+
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  group('Resto App Integration Test', () {
+  testWidgets('Integrate: List -> Detail -> Favorite', (
+    WidgetTester tester,
+  ) async {
+    final robot = RestoRobot(tester);
 
-    testWidgets('End-to-End Test: List -> Detail -> Favorite', (WidgetTester tester) async {
-      app.main();
-      await tester.pumpAndSettle();
+    await robot.loadApp(app.main);
 
-      // 1. Pastikan halaman list tampil
-      expect(find.byKey(const Key('home_scroll')), findsOneWidget);
+    await robot.ensureHomeLoaded();
 
-      await tester.pumpAndSettle(const Duration(seconds: 3));
-      // 2. Klik item resto pertama
-      final firstItem = find.byType(ListTile).first;
-      expect(firstItem, findsOneWidget);
+    await robot.tapFirstRestaurant();
 
-      await tester.tap(firstItem);
-      await tester.pumpAndSettle();
+    await robot.ensureDetailLoaded();
 
-      // 3. Pastikan halaman detail muncul
-      expect(find.byType(Scaffold), findsWidgets);
+    await robot.tapFavorite();
 
-      // 4. Klik tombol Favorite
-      final favButton = find.byIcon(Icons.favorite_border);
-      if (favButton.evaluate().isNotEmpty) {
-        await tester.tap(favButton);
-        await tester.pumpAndSettle();
-      }
+    await robot.goBack();
 
-      // 5. Kembali ke halaman list
-      final backButton = find.byTooltip('Back');
-      if (backButton.evaluate().isNotEmpty) {
-        await tester.tap(backButton);
-        await tester.pumpAndSettle();
-      }
+    await robot.openFavoritePage();
 
-      // 6. Buka halaman Favorite
-      final favNav = find.text('Favorite');
-      if (favNav.evaluate().isNotEmpty) {
-        await tester.tap(favNav);
-        await tester.pumpAndSettle();
-      }
-
-      // 7. Pastikan halaman Favorite tampil
-      expect(find.byKey(const Key('favorite_list')), findsOneWidget);
-    });
+    await robot.ensureFavoriteLoaded();
   });
 }

@@ -24,7 +24,7 @@ class DetailPage extends StatelessWidget {
         restaurantId: id,
       ),
       child: Scaffold(
-        key: const Key('detail_page'),
+        key: const ValueKey("detail_page"),
         backgroundColor: Theme.of(context).colorScheme.surface,
         body: Consumer<RestaurantDetailProvider>(
           builder: (context, provider, _) {

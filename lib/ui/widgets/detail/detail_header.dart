@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:resto_app/data/model/resto_detail_response.dart';
-import 'favorite_button.dart';
 
 class DetailHeader extends StatelessWidget {
   final RestaurantDetail restaurant;
@@ -25,8 +24,7 @@ class DetailHeader extends StatelessWidget {
                 width: double.infinity,
               ),
             ),
-            FavoriteButton(restaurant: restaurant),
-          ],
+            ],
         ),
       ),
     );

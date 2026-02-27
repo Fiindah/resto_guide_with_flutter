@@ -28,12 +28,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: const ValueKey("home_page"),
       body: Consumer<RestaurantListProvider>(
         builder: (context, provider, _) {
           final state = provider.state;
 
           return CustomScrollView(
-            key: const Key('home_scroll'),
+            key: const ValueKey("home_list"),
             slivers: [
               SliverAppBar(
                 expandedHeight: 200,
@@ -105,7 +106,10 @@ class _HomePageState extends State<HomePage> {
                       final successState = state as SuccessState;
                       final restaurant = successState.data.restaurants[index];
 
-                      return RestaurantCard(restaurant: restaurant);
+                      return RestaurantCard(
+                        key: ValueKey("restaurant_item_$index"),
+                        restaurant: restaurant
+                      );
                     },
                     childCount: (state as SuccessState).data.restaurants.length,
                   ),

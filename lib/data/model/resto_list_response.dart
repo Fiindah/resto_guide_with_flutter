@@ -39,4 +39,15 @@ class Restaurant {
       rating: (json['rating'] as num).toDouble(),
     );
   }
+
+  Map<String, dynamic> toJson() {
+  return {
+    "id": id,
+    "name": name,
+    "description": description,
+    "city": city,
+    "pictureId": pictureId,
+    "rating": rating,
+  };
+}
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:resto_app/data/model/resto_detail_response.dart';
+import 'package:resto_app/ui/widgets/favorite_button.dart';
 import './expandable_text.dart';
 
 class DetailInfoSection extends StatelessWidget {
@@ -14,12 +15,21 @@ class DetailInfoSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            restaurant.name,
-            key: const Key('detail_title'),
-            style: Theme.of(
-              context,
-            ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Text(
+                  restaurant.name,
+                  key: const Key('detail_title'),
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 8),
+              FavoriteButton(restaurant: restaurant),
+            ],
           ),
           const SizedBox(height: 8),
           Row(

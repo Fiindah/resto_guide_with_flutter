@@ -27,6 +27,12 @@ class NotificationService {
     );
 
     await flutterLocalNotificationsPlugin.initialize(settings);
+
+    await flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin
+        >()
+        ?.requestNotificationsPermission();
   }
 
   Future<void> scheduleDailyLunchReminder() async {
@@ -49,8 +55,7 @@ class NotificationService {
       'Cek rekomendasi restoran terbaik hari ini!',
       _nextInstanceOf11AM(),
       notificationDetails,
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       matchDateTimeComponents: DateTimeComponents.time,
     );
   }

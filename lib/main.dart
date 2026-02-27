@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:resto_app/data/api/resto_api_service.dart';
-import 'package:resto_app/provider/favorite_provider.dart';
+import 'package:resto_app/data/local/local_data_service.dart';
+import 'package:resto_app/provider/local_database_provider.dart';
 import 'package:resto_app/provider/resto_list_provider.dart';
 import 'package:resto_app/provider/search_provider.dart';
 import 'package:resto_app/provider/navigation_provider.dart';
@@ -12,7 +13,6 @@ import 'package:resto_app/services/notification_service.dart';
 import 'package:resto_app/theme/app_theme.dart';
 import 'package:resto_app/ui/pages/main_page.dart';
 import 'package:resto_app/ui/pages/search_page.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,7 +37,11 @@ void main() async {
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
         ChangeNotifierProvider(create: (_) => NavigationProvider()),
         ChangeNotifierProvider(create: (_) => ExpandableTextProvider()),
-        ChangeNotifierProvider(create: (_) => FavoriteProvider()),
+        Provider(create: (_) => LocalDatabaseService()),
+        ChangeNotifierProvider(
+          create: (context) =>
+              LocalDatabaseProvider(context.read<LocalDatabaseService>()),
+        ),
         ChangeNotifierProvider(
           create: (_) => ReminderProvider()..loadReminder(),
         ),
