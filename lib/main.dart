@@ -40,7 +40,8 @@ void main() async {
         Provider(create: (_) => LocalDatabaseService()),
         ChangeNotifierProvider(
           create: (context) =>
-              LocalDatabaseProvider(context.read<LocalDatabaseService>()),
+              LocalDatabaseProvider(context.read<LocalDatabaseService>())
+                ..loadAllRestaurant(),
         ),
         ChangeNotifierProvider(
           create: (_) => ReminderProvider()..loadReminder(),

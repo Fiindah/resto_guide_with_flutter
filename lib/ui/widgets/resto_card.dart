@@ -35,6 +35,14 @@ class RestaurantCard extends StatelessWidget {
                     width: 100,
                     height: 100,
                     fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        width: 100,
+                        height: 100,
+                        color: Colors.grey[300],
+                        child: const Icon(Icons.broken_image),
+                      );
+                    },
                   ),
                 ),
               ),
@@ -56,21 +64,27 @@ class RestaurantCard extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 8),
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.star,
-                              color: Colors.amber,
-                              size: 18,
-                            ),
-                            const SizedBox(width: 2),
-                            Text(
-                              restaurant.rating.toString(),
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w600,
+
+                        Flexible(
+                          fit: FlexFit.loose,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(
+                                Icons.star,
+                                color: Colors.amber,
+                                size: 18,
                               ),
-                            ),
-                          ],
+                              const SizedBox(width: 2),
+                              Text(
+                                restaurant.rating.toString(),
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),

@@ -3,22 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:resto_app/provider/local_database_provider.dart';
 import 'package:resto_app/ui/widgets/resto_card.dart';
 
-class FavoritePage extends StatefulWidget {
+class FavoritePage extends StatelessWidget {
   const FavoritePage({super.key});
-
-  @override
-  State<FavoritePage> createState() => _FavoritePageState();
-}
-
-class _FavoritePageState extends State<FavoritePage> {
-
-  @override
-  void initState() {
-    Future.microtask(() {
-      context.read<LocalDatabaseProvider>().loadAllRestaurant();
-    });
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +12,8 @@ class _FavoritePageState extends State<FavoritePage> {
       key: const ValueKey("favorite_page"),
       appBar: AppBar(title: const Text("Favorite Restaurant")),
       body: Consumer<LocalDatabaseProvider>(
-        builder: (context, value, child) {
-          final list = value.restaurantList ?? [];
+        builder: (context, provider, child) {
+          final list = provider.restaurantList ?? [];
 
           if (list.isEmpty) {
             return const Center(
@@ -36,11 +22,12 @@ class _FavoritePageState extends State<FavoritePage> {
           }
 
           return ListView.builder(
-            key: const ValueKey("favorite_page"),
+            key: const ValueKey("favorite_list"),
             itemCount: list.length,
             itemBuilder: (context, index) {
-              final restaurant = list[index];
-              return RestaurantCard(restaurant: restaurant);
+              return RestaurantCard(
+                restaurant: list[index],
+              );
             },
           );
         },

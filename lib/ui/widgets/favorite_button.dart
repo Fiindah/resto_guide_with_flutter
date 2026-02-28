@@ -33,16 +33,12 @@ class FavoriteButton extends StatelessWidget {
         child: IconButton(
           key: const ValueKey("favorite_button"),
           onPressed: () async {
-            await providerRead.loadRestaurantById(restaurant.id);
-
-            if (!isFavorite) {
-              await providerRead.saveRestaurant(restaurant.toRestaurant());
-            } else {
-              await providerRead.removeRestaurantById(restaurant.id);
-            }
-
-            await providerRead.loadAllRestaurant();
-          },
+  if (!isFavorite) {
+    await providerRead.saveRestaurant(restaurant.toRestaurant());
+  } else {
+    await providerRead.removeRestaurantById(restaurant.id);
+  }
+},
           icon: AnimatedSwitcher(
             duration: const Duration(milliseconds: 300),
             transitionBuilder: (child, anim) =>

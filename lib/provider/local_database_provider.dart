@@ -20,10 +20,12 @@ class LocalDatabaseProvider extends ChangeNotifier {
     try {
       final result = await _service.insertItem(value);
       _message = result == 0
-          ? "Failed to save data"
-          : "Data saved successfully";
+          ? "Failed to favorite data"
+          : "Data favorite successfully";
+
+      _restaurantList = await _service.getAllItems(); // 🔥 update state
     } catch (e) {
-      _message = "Failed to save data";
+      _message = "Failed to favorite data";
     }
     notifyListeners();
   }
@@ -53,6 +55,8 @@ class LocalDatabaseProvider extends ChangeNotifier {
     try {
       await _service.removeItem(id);
       _message = "Data removed";
+
+      _restaurantList = await _service.getAllItems(); // 🔥 update state
     } catch (e) {
       _message = "Failed to remove data";
     }
@@ -60,7 +64,7 @@ class LocalDatabaseProvider extends ChangeNotifier {
   }
 
   bool checkItemFavorite(String id) {
-    final isSameRestaurant = _restaurant?.id == id;
-    return isSameRestaurant;
+    if (_restaurantList == null) return false;
+    return _restaurantList!.any((element) => element.id == id);
   }
 }
