@@ -1,22 +1,37 @@
 # 🍽️ Resto Guide App
 
-Resto Guide adalah aplikasi Flutter yang menampilkan daftar restoran, detail restoran, pencarian, serta fitur ulasan pelanggan.  
+Resto Guide adalah aplikasi Flutter yang menampilkan daftar restoran, detail restoran, pencarian, fitur ulasan pelanggan, fitur favorit dan pengingat makan siang.  
 Aplikasi ini dibangun sebagai projek submission pada program IDCamp di Dicoding Akademi dengan fokus pada penerapan **State Management (Provider)**, **REST API**, dan **Material 3**.
 
 ---
 
 ## ✨ Fitur Utama
 
-- 📋 Menampilkan daftar restoran
+- 📋 Daftar restoran
 - 🔍 Pencarian restoran
 - 📄 Detail restoran (deskripsi, alamat, menu)
 - ⭐ Rating restoran
 - 💬 Daftar ulasan pelanggan
 - ✍️ Kirim ulasan restoran
-- 🎨 Ubah tema (Light, Dark, Soft Blue)
+- ⭐ Favorite Restaurant (SQLite)
+- 🔔 Daily Reminder Notification (11 AM)
+- 🎨 Shared Preferences pada fitur Ubah tema (Light, Dark, Soft Blue)
 - 🌐 Konsumsi REST API Dicoding
 
 ---
+
+## 📸 Screenshot Aplikasi
+
+| Home                          | Detail                            | Search                            |
+| ----------------------------- | --------------------------------- | --------------------------------- |
+| ![Home](assets/screenshots/home.png) | ![Detail](assets/screenshots/detail.png) | ![Search](assets/screenshots/search.png) |
+
+| Favorite                              | Setting                              |
+| ------------------------------------- | ------------------------------------ |
+| ![Favorite](assets/screenshots/favorite.png) | ![Setting](assets/screenshots/setting.png) |
+
+---
+
 
 ## 🧱 Arsitektur & Teknologi
 
@@ -40,22 +55,33 @@ lib/
 ├── data/
 │   ├── api/
 │   │   └── resto_api_service.dart
+│   ├── database/
+│   │   └── local_database_service.dart
 │   └── model/
+│       ├── resto_list_response.dart
 │       └── resto_detail_response.dart
 │
 ├── provider/
 │   ├── resto_list_provider.dart
 │   ├── resto_detail_provider.dart
 │   ├── search_provider.dart
-│   └── theme_provider.dart
+│   ├── theme_provider.dart
+│   ├── reminder_provider.dart
+│   └── local_database_provider.dart
+│
+├── services/
+│   └── notification_service.dart
 │
 ├── ui/
 │   ├── pages/
 │   │   ├── home_page.dart
 │   │   ├── search_page.dart
-│   │   └── detail_page.dart
+│   │   ├── detail_page.dart
+│   │   ├── favorite_page.dart
+│   │   └── settings_page.dart
 │   │
 │   └── widgets/
+│       ├── restaurant_card.dart
 │       ├── customer_review_list.dart
 │       ├── review_form.dart
 │       └── theme_footer.dart
@@ -64,7 +90,7 @@ lib/
 │   └── result_state.dart
 │
 └── main.dart
-````
+```
 
 ---
 
