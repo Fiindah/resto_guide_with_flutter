@@ -22,13 +22,13 @@ Aplikasi ini dibangun sebagai projek submission pada program IDCamp di Dicoding 
 
 ## 📸 Screenshot Aplikasi
 
-| Home                          | Detail                            | Search                            |
+| Home                          | Detail                            | Review                            |
 | ----------------------------- | --------------------------------- | --------------------------------- |
-| ![Home](assets/screenshots/home.png) | ![Detail](assets/screenshots/detail.png) | ![Search](assets/screenshots/search.png) |
+| ![Home](assets/screenshots/home.png) | ![Detail](assets/screenshots/detail.png) | ![Review](assets/screenshots/review.png) |
 
-| Favorite                              | Setting                              |
-| ------------------------------------- | ------------------------------------ |
-| ![Favorite](assets/screenshots/favorite.png) | ![Setting](assets/screenshots/setting.png) |
+| Search                        | Favorite                          | Setting                           |
+| ----------------------------- | --------------------------------- | --------------------------------- |
+| ![Search](assets/screenshots/search.png) | ![Favorite](assets/screenshots/favorite.png) | ![Setting](assets/screenshots/setting.png) |
 
 ---
 
