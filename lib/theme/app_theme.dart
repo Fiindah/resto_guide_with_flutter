@@ -1,33 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  static const _fontFamily = 'Poppins';
-
   static TextTheme _customTextTheme(Brightness brightness) {
-    final base = ThemeData(brightness: brightness).textTheme;
+  final base = ThemeData(brightness: brightness).textTheme;
 
-    return base.copyWith(
-      headlineMedium: base.headlineMedium?.copyWith(
-        fontSize: 22,
-        fontWeight: FontWeight.bold,
-        letterSpacing: 0.5,
-      ),
-      titleMedium: base.titleMedium?.copyWith(
-        fontSize: 18,
-        fontWeight: FontWeight.w600,
-      ),
-      bodyMedium: base.bodyMedium?.copyWith(fontSize: 14, height: 1.6),
-      labelLarge: base.labelLarge?.copyWith(
-        fontSize: 14,
-        fontWeight: FontWeight.w600,
-        letterSpacing: 0.3,
-      ),
-    );
-  }
+  final poppins = GoogleFonts.poppinsTextTheme(base);
+
+  return poppins.copyWith(
+    headlineMedium: poppins.headlineMedium?.copyWith(
+      fontSize: 22,
+      fontWeight: FontWeight.bold,
+      letterSpacing: 0.5,
+    ),
+    titleMedium: poppins.titleMedium?.copyWith(
+      fontSize: 18,
+      fontWeight: FontWeight.w600,
+    ),
+    bodyMedium: poppins.bodyMedium?.copyWith(
+      fontSize: 14,
+      height: 1.6,
+    ),
+    labelLarge: poppins.labelLarge?.copyWith(
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
+      letterSpacing: 0.3,
+    ),
+  );
+}
 
   static ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
-    fontFamily: _fontFamily,
     colorScheme: ColorScheme.fromSeed(
       seedColor: Colors.indigo,
       brightness: Brightness.light,
@@ -38,7 +41,6 @@ class AppTheme {
 
   static ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
-    fontFamily: _fontFamily,
     colorScheme: ColorScheme.fromSeed(
       seedColor: Colors.indigo,
       brightness: Brightness.dark,
@@ -49,7 +51,6 @@ class AppTheme {
 
   static ThemeData softBlueTheme = ThemeData(
     brightness: Brightness.light,
-    fontFamily: _fontFamily,
     colorScheme: ColorScheme.fromSeed(
       seedColor: const Color(0xFF9CCFFF),
       brightness: Brightness.light,

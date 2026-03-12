@@ -7,6 +7,8 @@ class RestaurantDetailProvider extends ChangeNotifier {
   final RestaurantApiService apiService;
   final String restaurantId;
 
+  bool _isDisposed = false;
+
   ResultState<RestaurantDetailResponse> state = LoadingState();
   ResultState<void>? reviewState;
 
@@ -53,5 +55,18 @@ class RestaurantDetailProvider extends ChangeNotifier {
   void resetReviewState() {
     reviewState = null;
     notifyListeners();
+  }
+
+  @override
+  void notifyListeners() {
+    if (!_isDisposed) {
+      super.notifyListeners();
+    }
+  }
+
+  @override
+  void dispose() {
+    _isDisposed = true;
+    super.dispose();
   }
 }

@@ -4,8 +4,13 @@ import 'package:resto_app/ui/pages/detail_page.dart';
 
 class RestaurantCard extends StatelessWidget {
   final Restaurant restaurant;
+  final String source;
 
-  const RestaurantCard({super.key, required this.restaurant});
+  const RestaurantCard({
+    super.key,
+    required this.restaurant,
+    this.source = 'home',
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +19,8 @@ class RestaurantCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (_) => DetailPage(id: restaurant.id)),
+          MaterialPageRoute(
+            builder: (_) => DetailPage(id: restaurant.id, source: source,)),
         );
       },
       child: Card(
@@ -27,7 +33,7 @@ class RestaurantCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Hero(
-                tag: restaurant.id,
+                tag: '${source}_${restaurant.id}',
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12),
                   child: Image.network(

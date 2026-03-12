@@ -16,9 +16,7 @@ class FavoritePage extends StatelessWidget {
           final list = provider.restaurantList ?? [];
 
           if (list.isEmpty) {
-            return const Center(
-              child: Text("Belum ada restoran favorit"),
-            );
+            return const Center(child: Text("Belum ada restoran favorit"));
           }
 
           return ListView.builder(
@@ -27,6 +25,7 @@ class FavoritePage extends StatelessWidget {
             itemBuilder: (context, index) {
               return RestaurantCard(
                 restaurant: list[index],
+                source: 'favorite',
               );
             },
           );

@@ -13,16 +13,19 @@ class SearchPage extends StatelessWidget {
       appBar: AppBar(
         title: Hero(
           tag: 'search-bar',
-          child: TextField(
-            autofocus: true,
-            decoration: const InputDecoration(
-              hintText: 'Cari resto atau cafe',
-              border: InputBorder.none,
+          child: Material(
+            color: Colors.transparent,
+            child: TextField(
+              autofocus: true,
+              decoration: const InputDecoration(
+                hintText: 'Cari resto atau cafe',
+                border: InputBorder.none,
+              ),
+              textInputAction: TextInputAction.search,
+              onSubmitted: (value) {
+                context.read<SearchProvider>().searchRestaurant(value);
+              },
             ),
-            textInputAction: TextInputAction.search,
-            onSubmitted: (value) {
-              context.read<SearchProvider>().searchRestaurant(value);
-            },
           ),
         ),
       ),

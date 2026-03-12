@@ -13,8 +13,9 @@ import '../../../utils/result_state.dart';
 
 class DetailPage extends StatelessWidget {
   final String id;
+  final String source;
 
-  const DetailPage({super.key, required this.id});
+  const DetailPage({super.key, required this.id, this.source = 'home'});
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +64,7 @@ class DetailPage extends StatelessWidget {
                 return CustomScrollView(
                   key: const Key('detail_scroll'),
                   slivers: [
-                    DetailHeader(restaurant: restaurant),
+                    DetailHeader(restaurant: restaurant, source: source),
 
                     SliverToBoxAdapter(
                       child: DetailInfoSection(restaurant: restaurant),
